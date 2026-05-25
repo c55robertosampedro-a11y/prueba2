@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificador de Filósofos | IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-brand">Filosofía Moderna</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="clasificador.html" class="active">Clasificador IA</a></li>
+        <li><a href="contexto.html">Contexto Histórico</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="equipo.html">Acerca de</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1 id="page-title">Cargando...</h1>
+    <p id="page-subtitle">Cargando...</p>
+</header>
+
+<div class="card">
+    <div class="tabs">
+        <button class="tab active" id="tab-cam" onclick="switchMode('cam')">Cámara</button>
+        <button class="tab" id="tab-file" onclick="switchMode('file')">Subir imagen</button>
+    </div>
+
+    <div class="mode active" id="mode-cam">
+        <div class="camera-wrap" id="camera-wrap">
+            <div class="placeholder-msg" id="cam-placeholder">
+                <span>📷</span>
+                <p>La cámara aparecerá aquí</p>
+            </div>
+            <div class="scan-line" id="scan-line"></div>
+        </div>
+        <button class="btn btn-primary" id="start-btn" onclick="initCamera()">Activar cámara</button>
+    </div>
+
+    <div class="mode" id="mode-file">
+        <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
+            <span>🖼</span>
+            <p>Haz clic o arrastra un retrato aquí</p>
+            <p class="upload-hint">JPG, PNG, WEBP</p>
+            <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handleFile(event)">
+        </div>
+        <div class="hidden" id="preview-wrap">
+            <img id="preview-img" alt="Vista previa">
+        </div>
+        <button class="btn btn-primary hidden" id="analyze-btn" onclick="predictFromImage()">Analizar Filósofo</button>
+        <button class="btn btn-secondary hidden" id="clear-btn" onclick="clearImage()">Cambiar imagen</button>
+    </div>
+</div>
+
+<div class="card hidden" id="results-card">
+    <p class="section-label">Probabilidades del Modelo</p>
+    <div id="bars-container"></div>
+</div>
+
+<div class="card hidden" id="result-final">
+    <div id="result-known">
+        <div class="result-name" id="result-name">—</div>
+        <div class="result-confidence" id="result-confidence">—</div>
+        <div class="divider"></div>
+        <p class="section-label">Ficha Filosófica</p>
+        <ul id="curiosities"></ul>
+    </div>
+    <div id="result-unknown" class="hidden">
+        <p class="unknown-title">No reconocido</p>
+        <p class="unknown-text">Este modelo no fue entrenado para identificar a este pensador.</p>
+    </div>
+    <button class="btn btn-primary" onclick="resetDetection()">Volver a detectar</button>
+</div>
+
+<p class="loading-msg hidden" id="loading-msg">Cargando red neuronal…</p>
+
+<footer>Proyecto STEAM · Historia · Filosofía</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

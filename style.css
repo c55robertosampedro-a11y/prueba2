@@ -1,0 +1,259 @@
+/* ============================================================
+   ESTILOS GENERALES
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    /* Combinación tipográfica clásica y filosófica. Usamos cursiva por defecto para el cuerpo */
+    font-family: 'EB Garamond', 'Georgia', serif;
+    font-style: italic;
+    background: #fcf9f2; /* Color pergamino/marfil claro, evoca páginas de libros antiguos */
+    color: #3e2723; /* Café espresso profundo, orgánico, simula tinta sepia vieja */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ============================================================
+   NAVEGACIÓN
+   ============================================================ */
+.navbar {
+    width: 100%;
+    background: #4e342e; /* Café tabaco oscuro para dar sobriedad y estructura */
+    color: #f5ebe0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    border-bottom: 2px solid #3e2723;
+}
+
+.nav-brand { 
+    font-family: 'Playfair Display', 'Georgia', serif; 
+    font-weight: 700; 
+    font-style: normal; /* El logo se mantiene firme */
+    font-size: 1.3rem; 
+    letter-spacing: 0.03em; 
+    color: #e6ccb2; /* Café lino claro */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #b7a493; /* Café ceniza suave */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #f5ebe0; /* Destaca en color crema noble */
+    font-weight: 600;
+}
+
+/* ============================================================
+   CONTENEDORES Y LAYOUT
+   ============================================================ */
+header { text-align: center; margin: 48px 16px 32px; }
+header h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-style: normal; 
+    font-size: 2.4rem; 
+    font-weight: 600; 
+    color: #3e2723; 
+}
+header p   { color: #6d4c41; margin-top: 10px; font-size: 1.1rem; }
+
+.hero-banner {
+    background: #ffffff;
+    width: 100%;
+    max-width: 800px;
+    padding: 60px 20px;
+    border-radius: 8px; /* Formas más rectangulares, estilo editorial antigua */
+    box-shadow: 0 4px 24px rgba(62, 39, 35, 0.04);
+    border: 1px solid #e6ccb2; /* Borde sutil color café con leche */
+    margin-top: 40px;
+    text-align: center;
+}
+
+.content-section {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.content-section h2 { 
+    font-family: 'Playfair Display', serif; 
+    font-style: normal; 
+    margin-bottom: 16px; 
+    color: #3e2723; 
+}
+.content-section p { margin-bottom: 16px; line-height: 1.7; color: #5d4037; font-size: 1.1rem; }
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e6ccb2;
+    border-radius: 8px;
+    padding: 24px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 14px auto;
+    box-shadow: 0 2px 14px rgba(62, 39, 35, 0.02);
+}
+
+/* ============================================================
+   PESTAÑAS (Cámara / Imagen)
+   ============================================================ */
+.tabs {
+    display: flex; gap: 4px; background: #f5ebe0; padding: 4px; border-radius: 6px; margin-bottom: 18px;
+}
+.tab {
+    flex: 1; padding: 10px; border: none; background: transparent; border-radius: 4px;
+    font-family: inherit; font-style: italic; font-size: 0.95rem; font-weight: 500; cursor: pointer; color: #8d6e63;
+    transition: all 0.2s ease;
+}
+.tab.active { 
+    background: #ffffff; 
+    color: #3e2723; 
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(62, 39, 35, 0.06); 
+}
+.mode { display: none; }
+.mode.active { display: block; }
+
+/* ============================================================
+   CÁMARA
+   ============================================================ */
+.camera-wrap {
+    position: relative; width: 100%; aspect-ratio: 1; background: #f5ebe0;
+    border-radius: 6px; overflow: hidden; border: 1px solid #e6ccb2;
+    display: flex; align-items: center; justify-content: center;
+}
+.camera-wrap canvas { width: 100% !important; height: 100% !important; object-fit: cover; display: block; }
+.placeholder-msg { text-align: center; color: #a1887f; font-size: 0.95rem; }
+.placeholder-msg span { display: block; font-size: 2.2rem; margin-bottom: 8px; color: #8d6e63; font-style: normal; }
+
+.scan-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: #8d6e63; opacity: 0; animation: scan 2.5s linear infinite; /* Escáner color café arcilla templado */
+}
+.scan-line.active { opacity: 0.6; }
+@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+
+/* ============================================================
+   SUBIR IMAGEN
+   ============================================================ */
+.upload-area {
+    border: 2px dashed #b7a493; border-radius: 6px; padding: 36px 20px; text-align: center; cursor: pointer;
+    background: #ffffff; transition: all 0.2s ease;
+}
+.upload-area:hover { border-color: #3e2723; background: #fffdfa; }
+.upload-area span  { font-size: 2rem; display: block; margin-bottom: 8px; color: #8d6e63; font-style: normal; }
+.upload-area p     { color: #5d4037; font-size: 0.95rem; }
+.upload-hint       { margin-top: 4px; font-size: 0.8rem !important; color: #a1887f !important; }
+
+#preview-wrap img {
+    width: 100%; border-radius: 6px; display: block; max-height: 280px;
+    object-fit: contain; background: #f5ebe0;
+}
+
+/* ============================================================
+   LÍNEA DE TIEMPO, EQUIPO, VIDEO
+   ============================================================ */
+.timeline { border-left: 2px solid #8d6e63; margin-left: 20px; padding-left: 20px; }
+.timeline-item { margin-bottom: 30px; position: relative; }
+.timeline-item::before {
+    content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px;
+    background: #8d6e63; border-radius: 50%;
+}
+.timeline-item h3 { font-family: 'Playfair Display', serif; font-style: normal; margin-bottom: 6px; color: #3e2723; }
+
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.team-card { text-align: center; margin: 0; max-width: none; }
+.team-card .role { 
+    color: #a67c1e; /* Tono bronce antiguo oaxaqueño para destacar jerarquías filosóficas */
+    font-size: 0.85rem; 
+    margin-bottom: 15px; 
+    font-weight: 600; 
+    letter-spacing: 0.05em; 
+    text-transform: uppercase; 
+    font-style: normal;
+}
+
+/* Fotos del equipo */
+.photo-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #4e342e;
+    box-shadow: 0 4px 12px rgba(62, 39, 35, 0.1);
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-photo {
+    transform: scale(1.05);
+}
+
+.video-container {
+    border-radius: 8px; overflow: hidden; box-shadow: 0 4px 16px rgba(62, 39, 35, 0.05); margin-bottom: 20px;
+}
+.video-info.card { max-width: 100%; margin: 0; }
+
+/* ============================================================
+   BOTONES Y EXTRAS
+   ============================================================ */
+.btn {
+    display: block; width: 100%; margin-top: 12px; padding: 12px 20px; border: none;
+    border-radius: 6px; font-family: inherit; font-style: italic; font-size: 0.95rem; font-weight: 500; cursor: pointer; text-align: center; text-decoration: none;
+    transition: all 0.2s ease;
+}
+.btn-primary         { background: #5d4037; color: #f5ebe0; } /* Botón café cuero medio */
+.btn-primary:hover   { background: #3e2723; }
+.btn-secondary       { background: transparent; color: #8d6e63; border: 1px solid #e6ccb2; }
+.btn-secondary:hover { border-color: #8d6e63; color: #3e2723; background: #fffdfa; }
+.hidden { display: none !important; }
+
+/* Probabilidades */
+.section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #a1887f; margin-bottom: 12px; font-style: normal; }
+.prob-item { margin-bottom: 10px; }
+.prob-header { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 4px; }
+.prob-header .label { font-weight: 500; color: #3e2723; }
+.prob-header .pct   { color: #8d6e63; }
+.bar-bg { height: 6px; background: #edf2f4; background-color: #e6ccb2; border-radius: 99px; overflow: hidden; }
+.bar-fill { height: 100%; background: #c5a880; border-radius: 99px; transition: width 0.3s ease; }
+.bar-fill.top { background: #5d4037; } /* El valor predominante toma la fuerza del café profundo */
+
+/* Resultado Final */
+#result-final { animation: fadeUp 0.25s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.result-name       { font-family: 'Playfair Display', serif; font-style: normal; font-size: 1.4rem; font-weight: 600; color: #3e2723;}
+.result-confidence { font-size: 0.85rem; color: #8d6e63; margin-top: 3px; }
+.divider { height: 1px; background: #e6ccb2; margin: 16px 0; }
+#curiosities { list-style: none; padding: 0; }
+#curiosities li { font-size: 0.95rem; line-height: 1.6; padding: 8px 0; border-bottom: 1px solid #f5ebe0; color: #4e342e; }
+#curiosities li:last-child { border-bottom: none; }
+
+.unknown-title { font-family: 'Playfair Display', serif; font-style: normal; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: #3e2723; }
+.unknown-text  { font-size: 0.9rem; color: #6d4c41; line-height: 1.6; }
+.loading-msg { text-align: center; color: #a1887f; font-size: 0.9rem; padding: 6px 0; max-width: 480px; width: 100%; }
+footer { margin: 48px 0 20px; color: #b7a493; font-size: 0.8rem; text-align: center; width: 100%; font-style: normal;}
+
+/* Móviles */
+@media (max-width: 600px) {
+    .nav-links { display: none; }
+    .navbar::after { content: 'Índice'; font-size: 0.85rem; color: #e6ccb2; border: 1px solid #8d6e63; padding: 3px 8px; border-radius: 4px;}
+}
